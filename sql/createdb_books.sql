@@ -1,12 +1,12 @@
 SET NAMES utf8;
 
-CREATE DATABASE IF NOT EXISTS `dblivros`;
+CREATE DATABASE IF NOT EXISTS `dbbooks`;
 
-USE `dblivros`;
+USE `dbbooks`;
 
-DROP TABLE IF EXISTS `livros`;
+DROP TABLE IF EXISTS `books`;
 
-CREATE TABLE IF NOT EXISTS `livros` (
+CREATE TABLE IF NOT EXISTS `books` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `capa` varchar(255) NOT NULL,
     `titulo` varchar(255) NOT NULL,
