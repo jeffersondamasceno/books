@@ -6,7 +6,7 @@ const path = require('path');
 const app = express();
 
 const {getHomePage} = require('./route/index');
-const {addPlayerPage, addPlayer, deletePlayer,editPlayer,editPlayerPage}=require('./routes/player');
+const {addBookPage, addBook, deleteBook,editBook,editBookPage}=require('./routes/Book');
 const port = 5000;
 
 // create connection to database
@@ -37,11 +37,11 @@ app.use(express.static(path.join(__dirname, 'public')));//confifure express to u
 app.use(fileUpload());//configure Fileupload
 
 app.get('/', getHomePage);
-app.get('/add', addPlayerPage);
-app.get('/edit/:id', editPlayerPage);
-app.get('/delete/:id', deletePlayer);
-app.post('/add', addPlayer);
-app.post('/edit/:id', editPlayer);
+app.get('/add', addBookPage);
+app.get('/edit/:id', editBookPage);
+app.get('/delete/:id', deleteBook);
+app.post('/add', addBook);
+app.post('/edit/:id', editBook);
 
 //set the app to listen on the port
 app.listen(port, () => {
