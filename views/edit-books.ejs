@@ -18,28 +18,33 @@
                     <label for="editora">Editora</label>
                     <input type="text" class="form-control" name="editora" id="editora" value="<%= book.editora %>" required>
                 </div>
+            </div>
+            <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="idioma">Idioma</label>
                     <input type="text" class="form-control" name="idioma" id="idioma" value="<%= book.idioma %>" required>
                 </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                     <label for="ano">Ano</label>
                     <input type="number" class="form-control" name="ano" id="ano" placeholder="ano" value="<%= book.ano %>" required>
                 </div>
-                <div>
+                <div class="form-group col-md-4">
                     <label for="isbn">ISBN</label>
-                    <input type="number" class="form-control" name="isbn">
+                    <input type="number" class="form-control" name="isbn" id="isbn" placeholder="isbn" value="<%= book.isbn%>">
                 </div>
             </div>
-            <div>
+            <div class="form-row">
                 <div class="form-group col-md-12">
                     <label for="capa">Capa</label>
-                    <input type="text" class="form-control" name="capa" id="capa" value="<%= book.capa %>" required>            
+                    <input type="text" class="form-control" name="capa" id="capa" value="<%= book.capa %>" required>  
                 </div>
             </div>
+            <button type="submit" class="btn btn-success float-right">Atualizar Livro</button>
         </form>
     <% } else { %>
-    }
+        <p class="text-center">Livro não encontrado. Vá <a href="/add">aqui</a> para adicionar livros.</p>
+    <% } %>
 </div>
+</div>
+</body>
+</html>
