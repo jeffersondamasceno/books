@@ -14,8 +14,30 @@
                         <th scope="col">Idioma</th>
                     </tr>
                 </thead>
+                <tbody>
+                    <% books.forEach((book, index => { %>
+                    <tr>
+                        <th scope="row"><%= books.id %></th>
+                        <td><img src="/assets/img/<%= book.image %>" class="rounded-circle player-img" alt=""></td>
+                        <td><%= book.capa %></td>
+                        <td><%= book.titulo %></td>
+                        <td><%= book.autor %></td>
+                        <td><%= book.editora %></td>
+                        <td><%= book.ano %></td>
+                        <td><%= book.isbn %></td>
+                        <td><%= book.idioma %></td>
+                        <td>
+                            <a href="/edit/<%= book.id %>" target="_blank" rel="noopener" class="btn btn-sm btn-success">Edit</a>
+                            <a href="/delete/<%= book.id %>" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    }))
+                </tbody>
             </table>
         <% } else { %>
             <p class="text-center">No Books found. Go <a href="/add">here</a> to add a Book</p>
         <% } %>
     </div>
+</div>
+</body>
+</html>
