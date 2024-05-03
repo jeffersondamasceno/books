@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `books` (
     `titulo` varchar(255) NOT NULL,
     `autor` varchar(255) NOT NULL,
     `editora` varchar(255) NOT NULL,
-    `ano` varchar(255) NOT NULL,
+    `ano` varchar(4) NOT NULL,
     `isbn` varchar(13) NOT NULL,
     `idioma` varchar(255) NOT NULL,
     PRIMARY KEY (`id`)

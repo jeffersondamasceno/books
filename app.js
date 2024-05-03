@@ -5,8 +5,8 @@ const mysql = require('mysql');
 const path = require('path');
 const app = express();
 
-const {getHomePage} = require('./route/index');
-const {addBookPage, addBook, deleteBook,editBook,editBookPage}=require('./routes/Book');
+const {getHomePage} = require('./routes/index');
+const {addBookPage, addBook, deleteBook,editBook,editBookPage}=require('./routes/book');
 const port = 5000;
 
 // create connection to database
