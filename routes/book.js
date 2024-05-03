@@ -90,7 +90,7 @@ const editBook = (req, res) => {
     const isbn = req.body.isbn;
     let query = `UPDATE books SET titulo='${titulo}', `;
     query = query.concat(`autor='${autor}', editora='${editora}', `);
-    query = query.concat(`idioma=${idioma}, ano=${ano}, isbn=${isbn};`);
+    query = query.concat(`idioma='${idioma}', ano='${ano}', isbn='${isbn}';`);
     db.query(query, (err, result) => {
         if (err) {
             return res.status(500).send(err);
