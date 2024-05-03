@@ -1,9 +1,13 @@
+'use strict';
+
 const express = require('express');
 const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
 const path = require('path');
 const app = express();
+const dotenv = require('dotenv');
+dotenv.config();
 
 const {getHomePage} = require('./routes/index');
 const {addBookPage, addBook, deleteBook,editBook,editBookPage}=require('./routes/book');

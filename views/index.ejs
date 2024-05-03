@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
     <div class="table-wrapper">
-        <% if (books.lengh > 0) {%>
+        <% if (books.length > 0) {%>
             <table class="table table-hovered">
                 <thead>
                     <tr>
@@ -15,7 +15,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% books.forEach((book, index => { %>
+                    <% books.forEach((book, index) => { %>
                     <tr>
                         <th scope="row"><%= books.id %></th>
                         <td><img src="/assets/img/<%= book.image %>" class="rounded-circle book-img" alt=""></td>
@@ -31,7 +31,7 @@
                             <a href="/delete/<%= book.id %>" class="btn btn-sm btn-danger">Delete</a>
                         </td>
                     </tr>
-                    }))
+                    <% }) %>
                 </tbody>
             </table>
         <% } else { %>

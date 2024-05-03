@@ -11,7 +11,7 @@ const addBookPage = (req, res) => {
 
 const addBook = (req, res) => {
     if (!req.files) {
-        return res.status(400).send('Nenhum arquivo foi enviado.')
+        return res.status(400).send('Nenhum arquivo foi enviado.');
     }
     const titulo = req.body.titulo;
     const autor = req.body.autor;
@@ -44,7 +44,7 @@ const addBook = (req, res) => {
                     if (err) {
                         return res.status(500).send(err);
                     }
-                    const query = "INSERT INTO `books` (titulo, autor, editora, ano, isbn, idioma, image) VALUES ('" +
+                    const query = "INSERT INTO `books` (titulo, autor, editora, ano, isbn, idioma, capa) VALUES ('" +
                      titulo + "', '" + autor + "', '" + editora + "', '" + ano + "', '" + isbn + "', '" + idioma + "', '" + image_name + "')";
                     db.query(query, (err, result) => {
                         if (err) {
@@ -64,3 +64,62 @@ const addBook = (req, res) => {
         }
     });
 }
+
+const editBookPage = (req, res) => {
+    const bookId = req.params.id;
+    const query = `SELECT * FROM books WHERE id = ${bookId}`;
+    db.query(query, (err, result) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+        res.render('edit-books.ejs', {
+            title: 'Editar Livro',
+            book: result[0],
+            message: ''
+        });
+    });
+}
+
+const editBook = (req, res) => {
+    const bookId = req.params.id;
+    const titulo = req.body.titulo;
+    const autor = req.body.autor;
+    const editora = req.body.editora;
+    const idioma = req.body.idioma;
+    const ano = req.body.ano;
+    const isbn = req.body.isbn;
+    let query = `UPDATE books SET titulo='${titulo}', `;
+    query = query.concat(`autor='${autor}', editora='${editora}', `);
+    query = query.concat(`idioma=${idioma}, ano=${ano}, isbn=${isbn};`);
+    db.query(query, (err, result) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+        res.redirect('/');
+    });
+}
+
+const deleteBook = (req, res) => {
+    const bookId = req.params.id;
+    const getImageQuery = `SELECT image from books WHERE id=${bookId};`;
+    const deleteUserQuery = `DELETE FROM books WHERE id=${bookId}`;
+    db.query(getImageQuery, (err, result) => {
+        if (err) {
+            return res.status(500).send(err);
+        }
+        const image = result[0].image;
+        fs.unlink(`public/assets/img/${image}`, (err) => {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            db.query(deleteUserQuery, (err, result) => {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                res.redirect('/');
+            });
+        });
+    });
+}
+
+module.exports = {addBookPage, addBook, editBookPage, editBook, deleteBook} ;
