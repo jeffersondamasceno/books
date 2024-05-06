@@ -9,8 +9,7 @@ const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
 
-const {getHomePage} = require('./routes/index');
-const {addBookPage, addBook, deleteBook,editBook,editBookPage}=require('./routes/book');
+const bookRoutes = require('./routes/book.routes');
 const port = 5000;
 
 // create connection to database
@@ -40,12 +39,7 @@ app.use(bodyParser.json());//parse from data client
 app.use(express.static(path.join(__dirname, 'public')));//confifure express to use public folder
 app.use(fileUpload());//configure Fileupload
 
-app.get('/', getHomePage);
-app.get('/add', addBookPage);
-app.get('/edit/:id', editBookPage);
-app.get('/delete/:id', deleteBook);
-app.post('/add', addBook);
-app.post('/edit/:id', editBook);
+app.use('/', bookRoutes);
 
 //set the app to listen on the port
 app.listen(port, () => {

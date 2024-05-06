@@ -2,6 +2,23 @@
 
 const fs = require('fs');
 
+const express = require('express');
+const router = express.Router();
+
+const getHomePage = (req, res) => {
+  const query = 'SELECT * FROM `books` ORDER BY id ASC';
+
+  db.query(query, (err, result) => {
+      if(err) {
+          res.redirect('/');
+      }
+      res.render('index.ejs', {
+          title: 'Bem-vindo ao Books | Ver Livros',
+          books: result
+      });
+  });
+};
+
 const addBookPage = (req, res) => {
     res.render('add-books.ejs', {
         title: 'Bem-vindo ao Books | Adicionar um novo livro',
@@ -123,4 +140,11 @@ const deleteBook = (req, res) => {
     });
 }
 
-module.exports = {addBookPage, addBook, editBookPage, editBook, deleteBook} ;
+router.get('/', getHomePage);
+router.get('/add', addBookPage);
+router.get('/edit/:id', editBookPage);
+router.get('/delete/:id', deleteBook);
+router.post('/add', addBook);
+router.post('/edit/:id', editBook);
+
+module.exports = router;
