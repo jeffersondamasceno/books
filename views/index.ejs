@@ -17,9 +17,8 @@
                 <tbody>
                     <% books.forEach((book, index) => { %>
                     <tr>
-                        <th scope="row"><%= books.id %></th>
-                        <td><img src="/assets/img/<%= book.image %>" class="rounded-circle book-img" alt=""></td>
-                        <td><%= book.capa %></td>
+                        <td><%= book.id %></td>
+                        <td><img src="/assets/img/<%= book.capa %>" class="rounded-circle book-img" alt=""></td>
                         <td><%= book.titulo %></td>
                         <td><%= book.autor %></td>
                         <td><%= book.editora %></td>

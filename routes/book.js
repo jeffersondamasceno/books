@@ -21,6 +21,7 @@ const addBook = (req, res) => {
     const idioma = req.body.idioma;
     const uploadedFile = req.files.image;
     let image_name = uploadedFile.name;
+    console.log(`image_name = ${image_name}`);
     const fileExtension = uploadedFile.mimetype.split('/')[1];
     image_name = `${titulo}.${fileExtension}`;
     const tituloQuery = `SELECT * FROM books WHERE titulo = '${titulo}';`;
@@ -101,13 +102,13 @@ const editBook = (req, res) => {
 
 const deleteBook = (req, res) => {
     const bookId = req.params.id;
-    const getImageQuery = `SELECT image from books WHERE id=${bookId};`;
+    const getImageQuery = `SELECT capa from books WHERE id=${bookId};`;
     const deleteUserQuery = `DELETE FROM books WHERE id=${bookId}`;
     db.query(getImageQuery, (err, result) => {
         if (err) {
             return res.status(500).send(err);
         }
-        const image = result[0].image;
+        const image = result[0].capa;
         fs.unlink(`public/assets/img/${image}`, (err) => {
             if (err) {
                 return res.status(500).send(err);
